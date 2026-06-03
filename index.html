@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer's Requirements and Application Checklist - CMD</title>
-    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -510,13 +509,11 @@
 
     <div class="premium-container">
         
-        <!-- Interactive Navigation Toolbar Controls -->
         <div class="toolbar">
             <button class="btn btn-save" onclick="alert('Form configuration cache saved locally.')">💾 Save Progress</button>
             <button class="btn btn-print" onclick="window.print()">🖨️ Print Document</button>
         </div>
 
-        <!-- Document Structural Header Row -->
         <div class="document-header">
             <div class="qr-placeholder">CMD-QR<br>CODE</div>
             <div class="header-titles">
@@ -540,7 +537,6 @@
             </div>
         </div>
 
-        <!-- Basic Information Editable Grid -->
         <div class="section-title">Basic Informations</div>
         <div class="basic-info-card">
             <div class="photo-container">
@@ -583,7 +579,6 @@
             </div>
         </div>
 
-        <!-- Main Checklist Data Table Matrix -->
         <div class="section-title">Process & Requirements Checklist Matrix</div>
         <div class="checklist-wrapper">
             <div class="checklist-header">
@@ -591,7 +586,6 @@
                 <div>REQUIREMENTS CHECKLIST DETAILS</div>
             </div>
 
-            <!-- STEP 1 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-1">
@@ -602,7 +596,6 @@
                 </div>
             </div>
 
-            <!-- STEP 2 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-2">
@@ -625,7 +618,6 @@
                 </div>
             </div>
 
-            <!-- STEP 3 (With requested target functional checkboxes) -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-3">
@@ -644,7 +636,6 @@
                 </div>
             </div>
 
-            <!-- STEP 4 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-4">
@@ -667,7 +658,6 @@
                 </div>
             </div>
 
-            <!-- STEP 5 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-5">
@@ -679,7 +669,6 @@
                 </div>
             </div>
 
-            <!-- STEP 6 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-6">
@@ -703,7 +692,6 @@
                 </div>
             </div>
 
-            <!-- STEP 7 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-7">
@@ -714,7 +702,6 @@
                 </div>
             </div>
 
-            <!-- STEP 8 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-8">
@@ -738,7 +725,6 @@
                 </div>
             </div>
 
-            <!-- STEP 9 (With requested target functional checkboxes) -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-9">
@@ -777,7 +763,6 @@
                 </div>
             </div>
 
-            <!-- STEP 10 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-10">
@@ -801,7 +786,6 @@
                 </div>
             </div>
 
-            <!-- STEP 11 -->
             <div class="step-row">
                 <div class="step-indicator-cell">
                     <input type="checkbox" id="chk-step-11">
@@ -814,7 +798,6 @@
 
         </div>
 
-        <!-- Dynamic Legal Footer Content -->
         <div class="footer-notice">
             CMD26-383 Nota: Sa pagsusumite ng requirements sa Tanggapan ay ilakip ang checklist na ito at tiyakin na nasunod po ang proseso.<br>
             <strong>FOR CHURCH AND INTERNAL USE ONLY.</strong><br>
@@ -823,9 +806,11 @@
 
     </div>
 
-    <!-- Interactive Runtime Javascript Script Engine -->
     <script>
-        // Automatic client-side calendar date-interval range counter engine
+        // BACKEND ADDRESS CONFIGURATION
+        // Replace this URL with your production link once your Java Service goes live (e.g., https://cmd-checker.onrender.com)
+        const BACKEND_API_BASE = "http://localhost:8080"; 
+
         function calculateInterval(element) {
             const panel = element.closest('.step-metadata-panel');
             const startDateVal = panel.querySelector('.date-start').value;
@@ -836,7 +821,7 @@
                 const d1 = new Date(startDateVal);
                 const d2 = new Date(endDateVal);
                 const timeDiff = d2.getTime() - d1.getTime();
-                const dayDiff = Math.ceil(timeDiff / (1000 * 306 * 240 / 12)); // Converts ms to days accurately
+                const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
                 
                 if (dayDiff >= 0) {
                     badge.innerText = `Interval: ${dayDiff} Day(s)`;
@@ -850,7 +835,6 @@
             }
         }
 
-        // Asynchronous multi-part file layout transport uploading mechanism connected directly to server WebDAV pipeline
         function uploadFileToNextcloud(input) {
             const file = input.files[0];
             if (!file) return;
@@ -864,8 +848,8 @@
             const formData = new FormData();
             formData.append("file", file);
 
-            // POST to backend API endpoint routing asynchronously to the shared public directory
-            fetch('/api/storage/nextcloud/upload', {
+            // Transmit file payload directly to your remote Java cloud proxy endpoint
+            fetch(`${BACKEND_API_BASE}/api/storage/nextcloud/upload`, {
                 method: 'POST',
                 body: formData
             })
@@ -875,14 +859,14 @@
                     statusLabel.style.color = "var(--success-green)";
                 } else {
                     const errMsg = await response.text();
-                    throw new Error(errMsg || 'Server responded with error');
+                    throw new Error(errMsg || 'Server cluster error response');
                 }
             })
             .catch(err => {
                 console.error(err);
                 statusLabel.innerText = "❌ Upload failed";
                 statusLabel.style.color = "var(--danger-red)";
-                alert("Cloud transmission error: Check your Spring application credentials config settings.");
+                alert("Storage Link Refused: Please confirm your Java application configurations are operational.");
             });
         }
     </script>
