@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer's Requirements and Application Checklist - CMD</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cmd-blue: #0b2545;
+            --cmd-accent: #134074;
+            --cmd-light-blue: #eeebf4;
+            --premium-gold: #c5a880;
+            --text-main: #1d2d44;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --border-color: #cbd5e1;
+            --success-green: #10b981;
+            --danger-red: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 30px 15px;
+        }
+
+        .premium-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--cmd-blue), var(--cmd-accent), var(--premium-gold));
+        }
+
+        /* Top Toolbar Controls */
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 15px;
+        }
+
+        .btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-print {
+            background-color: var(--cmd-blue);
+            color: white;
+        }
+
+        .btn-print:hover {
+            background-color: var(--cmd-accent);
+            transform: translateY(-1px);
+        }
+
+        .btn-save {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-save:hover {
+            background-color: #e2e8f0;
+        }
+
+        /* Image Document Header Layout */
+        .document-header {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 20px;
+            align-items: start;
+            border-bottom: 2px solid var(--cmd-blue);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .qr-placeholder {
+            width: 80px;
+            height: 80px;
+            border: 1px solid var(--border-color);
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: var(--text-muted);
+            border-radius: 4px;
+        }
+
+        .header-titles h1 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--cmd-blue);
+            text-transform: uppercase;
+        }
+
+        .header-titles h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--cmd-accent);
+            margin-top: 2px;
+        }
+
+        .header-titles p {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 1px;
+        }
+
+        .meta-timeline-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-size: 11px;
+            min-width: 220px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .meta-row:last-child { margin-bottom: 0; }
+        .meta-label { font-weight: 700; color: var(--cmd-accent); }
+        .meta-input {
+            border: none;
+            background: transparent;
+            border-bottom: 1px dashed var(--border-color);
+            text-align: right;
+            font-family: inherit;
+            font-weight: 600;
+            width: 100px;
+            color: var(--text-main);
+        }
+        .meta-input:focus { outline: none; border-bottom-color: var(--cmd-blue); }
+
+        /* Basic Information Segment */
+        .section-title {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--cmd-blue);
+            margin-bottom: 12px;
+        }
+
+        .basic-info-card {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 30px;
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .photo-container {
+            width: 140px;
+            height: 160px;
+            border: 2px dashed var(--border-color);
+            background-color: var(--bg-body);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .info-fields-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 25px;
+        }
+
+        .info-group {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 6px;
+        }
+
+        .info-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .info-value-input {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            border: none;
+            background: transparent;
+            margin-top: 2px;
+            width: 100%;
+        }
+        .info-value-input:focus { outline: none; }
+
+        /* Checklist Block Structures */
+        .checklist-wrapper {
+            border: 1px solid var(--cmd-blue);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .checklist-header {
+            background-color: var(--cmd-blue);
+            color: white;
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            padding: 12px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .step-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #ffffff;
+        }
+        .step-row:last-child { border-bottom: none; }
+
+        .step-indicator-cell {
+            padding: 20px;
+            background-color: #fafafa;
+            border-right: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--cmd-blue);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .step-indicator-cell input[type="checkbox"] {
+            margin-top: 4px;
+            cursor: pointer;
+        }
+
+        .step-content-cell {
+            padding: 20px;
+            font-size: 13px;
+            color: var(--text-main);
+        }
+
+        .step-description {
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .step-note {
+            display: block;
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+            background-color: #f8fafc;
+            padding: 8px 12px;
+            border-left: 3px solid var(--premium-gold);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Requirements Grid for Step 3 and Step 9 */
+        .requirements-submatrix {
+            margin-top: 15px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .grid-2-col {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .req-item-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 12.5px;
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        .req-item-label input[type="checkbox"] {
+            margin-top: 3px;
+            accent-color: var(--cmd-accent);
+        }
+
+        /* Metadata Control Panel for Timelines & Uploads */
+        .step-metadata-panel {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            background-color: #fafafa;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .date-picker-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .date-input-field {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .date-input-field input[type="date"] {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 4px 8px;
+            color: var(--text-main);
+            background-color: white;
+        }
+
+        .days-counter-badge {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .upload-action-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-upload-label {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .file-upload-label:hover {
+            background-color: #f1f5f9;
+            border-color: var(--text-muted);
+        }
+
+        .file-upload-input {
+            display: none;
+        }
+
+        .upload-status-indicator {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .footer-notice {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+
+        /* Responsiveness Media Rules */
+        @media (max-width: 768px) {
+            .document-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+            }
+            .meta-timeline-box {
+                width: 100%;
+            }
+            .basic-info-card {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+            .info-fields-grid {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+            .checklist-header, .step-row {
+                grid-template-columns: 1fr;
+            }
+            .step-indicator-cell {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                background-color: #f1f5f9;
+            }
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
+            .step-metadata-panel {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Print Media Settings Layout overriding styles */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .premium-container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            .toolbar, .upload-action-box {
+                display: none !important;
+            }
+            .step-metadata-panel {
+                background-color: transparent;
+                padding: 0;
+            }
+            .date-input-field input[type="date"] {
+                border: none;
+                padding: 0;
+                background: transparent;
+                -webkit-appearance: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="premium-container">
+        
+        <!-- Interactive Navigation Toolbar Controls -->
+        <div class="toolbar">
+            <button class="btn btn-save" onclick="alert('Form configuration cache saved locally.')">💾 Save Progress</button>
+            <button class="btn btn-print" onclick="window.print()">🖨️ Print Document</button>
+        </div>
+
+        <!-- Document Structural Header Row -->
+        <div class="document-header">
+            <div class="qr-placeholder">CMD-QR<br>CODE</div>
+            <div class="header-titles">
+                <h1>Volunteer's Requirements and Application Checklist</h1>
+                <h2>Central Motorpool Department (CMD)</h2>
+                <p>Contact Hotlines: (02) 8981-4311 / (03) 7719-7800 (CMD-HR) Local # 4902</p>
+            </div>
+            <div class="meta-timeline-box">
+                <div class="meta-row">
+                    <span class="meta-label">REGARDING:</span>
+                    <input type="text" class="meta-input" value="APPLICATION PROCESS" readonly>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">STR:</span>
+                    <input type="text" class="meta-input" value="260603">
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">END:</span>
+                    <input type="text" class="meta-input" value="260703">
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Information Editable Grid -->
+        <div class="section-title">Basic Informations</div>
+        <div class="basic-info-card">
+            <div class="photo-container">
+                <span>[ Attach ]</span>
+                <span style="margin-top: 5px;">2x2 / Passport Size Photo</span>
+            </div>
+            <div class="info-fields-grid">
+                <div class="info-group">
+                    <span class="info-label">Pangalan (Name)</span>
+                    <input type="text" class="info-value-input" value="ERICSON E. ARCEGA">
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Nais Ipaglingkod (Desired Role)</span>
+                    <input type="text" class="info-value-input" value="HELPER MECHANIC">
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Lokal - Distrito (Locale - District)</span>
+                    <input type="text" class="info-value-input" value="PUNTURIN - CALOOCAN NORTH">
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Contact Number</span>
+                    <input type="text" class="info-value-input" value="0966-843-3080">
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Kapisanan (Organization)</span>
+                    <input type="text" class="info-value-input" value="KADIWA">
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Edad / Kapanganakan (Age / DOB)</span>
+                    <input type="text" class="info-value-input" value="36 | 1-Aug-1990">
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Bilang ng Taon sa Iglesia (Years inside Church)</span>
+                    <input type="text" class="info-value-input" value="HANDOG">
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Tungkulin (Church Duty)</span>
+                    <input type="text" class="info-value-input" value="FINANCE">
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Checklist Data Table Matrix -->
+        <div class="section-title">Process & Requirements Checklist Matrix</div>
+        <div class="checklist-wrapper">
+            <div class="checklist-header">
+                <div>PROCESS</div>
+                <div>REQUIREMENTS CHECKLIST DETAILS</div>
+            </div>
+
+            <!-- STEP 1 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-1">
+                    <label th:for="chk-step-1">STEP 1</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description">Pag-ugnay ng nais na maglingkod sa destinado/pastor para sa proseso at requirements checklist.</div>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-2">
+                    <label th:for="chk-step-2">STEP 2</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description">Gagawa ng salaysay ang nais na maglingkod na naka-address sa Pamamahala na nakasaad na kinikilala na ang paglilingkod ay tungkulin at hindi hanapbuhay.</div>
+                    
+                    <div class="step-metadata-panel">
+                        <div class="date-picker-group">
+                            <div class="date-input-field"><span>D/S:</span><input type="date" class="date-start" onchange="calculateInterval(this)"></div>
+                            <div class="date-input-field"><span>D/E:</span><input type="date" class="date-end" onchange="calculateInterval(this)"></div>
+                            <div class="days-counter-badge">Interval: 0 Days</div>
+                        </div>
+                        <div class="upload-action-box">
+                            <label class="file-upload-label">📁 Choose File<input type="file" class="file-upload-input" onchange="uploadFileToNextcloud(this)"></label>
+                            <span class="upload-status-indicator">No attachment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3 (With requested target functional checkboxes) -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-3">
+                    <label th:for="chk-step-3">STEP 3</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description"><strong>Pagkuha ng mga patotoo sa Lokal</strong> (naka-address sa Pamamahala) at mga requirements gaya ng mga sumusunod:</div>
+                    
+                    <div class="requirements-submatrix">
+                        <label class="req-item-label"><input type="checkbox"> 2. Pagkuha sa kalihiman ng R2-01 w/ R201A (printed copy)</label>
+                        <label class="req-item-label"><input type="checkbox"> 3. Pagkuha ng patotoo ng Lokal (nakalagda ang mga pamunuan at destinado/pastor ng Lokal)</label>
+                        <label class="req-item-label"><input type="checkbox"> 4. Pagkuha ng patotoo ng pamunuan ng pangulo ng kapisanan na kinabibilangan</label>
+                        <label class="req-item-label"><input type="checkbox"> 5. Pagkuha ng patotoo sa katiwala ng grupo na kinabibilangan</label>
+                        <label class="req-item-label"><input type="checkbox"> 6. Patotoo ng destinado na nakausap ang nais maglingkod at naipaliwanag ang ukol sa "confidentiality."</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-4">
+                    <label th:for="chk-step-4">STEP 4</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description">Isusumite ng destinado o ng aplikante mismo ang mga patotoo ng Lokal sa Kalihim ng Distrito.</div>
+                    
+                    <div class="step-metadata-panel">
+                        <div class="date-picker-group">
+                            <div class="date-input-field"><span>D/S:</span><input type="date" class="date-start" onchange="calculateInterval(this)"></div>
+                            <div class="date-input-field"><span>D/E:</span><input type="date" class="date-end" onchange="calculateInterval(this)"></div>
+                            <div class="days-counter-badge">Interval: 0 Days</div>
+                        </div>
+                        <div class="upload-action-box">
+                            <label class="file-upload-label">📁 Choose File<input type="file" class="file-upload-input" onchange="uploadFileToNextcloud(this)"></label>
+                            <span class="upload-status-indicator">No attachment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-5">
+                    <label th:for="chk-step-5">STEP 5</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description"><strong>Pagkuha ng nais na maglingkod ng PATOTOO NG TAGAPANGASIWA NG DISTRITO.</strong></div>
+                    <span class="step-note">Nota: Ang patotoo ng Tagapangasiwa ay naka-address sa Pamamahala (Pinatutunayang qualified at nasiyasat). Kaya mahalagang ma-interview din ang kapatid na nais na maglingkod.</span>
+                </div>
+            </div>
+
+            <!-- STEP 6 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-6">
+                    <label th:for="chk-step-6">STEP 6</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description"><strong>Ang Kalihim ng Distrito ang magpapadala ng requirements ng aplikante sa Central Motorpool Department o dalhin mismo ng aplikante sa Motorpool.</strong></div>
+                    <span class="step-note">Nota: Maaaring itawag muna sa telephone number na nasa itaas sa Local 4902 - Motorpool HR.</span>
+                    
+                    <div class="step-metadata-panel">
+                        <div class="date-picker-group">
+                            <div class="date-input-field"><span>D/S:</span><input type="date" class="date-start" onchange="calculateInterval(this)"></div>
+                            <div class="date-input-field"><span>D/E:</span><input type="date" class="date-end" onchange="calculateInterval(this)"></div>
+                            <div class="days-counter-badge">Interval: 0 Days</div>
+                        </div>
+                        <div class="upload-action-box">
+                            <label class="file-upload-label">📁 Choose File<input type="file" class="file-upload-input" onchange="uploadFileToNextcloud(this)"></label>
+                            <span class="upload-status-indicator">No attachment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 7 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-7">
+                    <label th:for="chk-step-7">STEP 7</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description">Hintayin ang tawag ng Personnel's office sa Distrito ukol sa psychological exam schedule.</div>
+                </div>
+            </div>
+
+            <!-- STEP 8 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-8">
+                    <label th:for="chk-step-8">STEP 8</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description"><strong>Pagkuha ng Psychological exam ng nais na maglingkod batay sa atas ng Tanggapan.</strong></div>
+                    <span class="step-note">Nota: Ang makapapasa sa psychological exam ang magtutuloy sa pagkumpleto ng requirements.</span>
+                    
+                    <div class="step-metadata-panel">
+                        <div class="date-picker-group">
+                            <div class="date-input-field"><span>D/S:</span><input type="date" class="date-start" onchange="calculateInterval(this)"></div>
+                            <div class="date-input-field"><span>D/E:</span><input type="date" class="date-end" onchange="calculateInterval(this)"></div>
+                            <div class="days-counter-badge">Interval: 0 Days</div>
+                        </div>
+                        <div class="upload-action-box">
+                            <label class="file-upload-label">📁 Choose File<input type="file" class="file-upload-input" onchange="uploadFileToNextcloud(this)"></label>
+                            <span class="upload-status-indicator">No attachment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 9 (With requested target functional checkboxes) -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-9">
+                    <label th:for="chk-step-9">STEP 9</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description"><strong>Pagkumpleto ng mga sumusunod na requirements:</strong></div>
+                    
+                    <div class="requirements-submatrix grid-2-col">
+                        <label class="req-item-label"><input type="checkbox"> 1. Barangay Clearance</label>
+                        <label class="req-item-label"><input type="checkbox"> 2. Police Clearance</label>
+                        <label class="req-item-label"><input type="checkbox"> 3. NBI Clearance</label>
+                        <label class="req-item-label"><input type="checkbox"> 4. Birth Certificate (For single only)</label>
+                        <label class="req-item-label"><input type="checkbox"> 5. Marriage Certificate</label>
+                        <label class="req-item-label"><input type="checkbox"> 6. Transcript of Records / Diploma</label>
+                        <label class="req-item-label"><input type="checkbox"> 7. Drug Test Result (NEGH Metro Manila)</label>
+                        <label class="req-item-label"><input type="checkbox"> 8. Chest X-Ray Result</label>
+                        <label class="req-item-label"><input type="checkbox"> 9. Medical Certificate, stated: "FIT TO WORK"</label>
+                        <label class="req-item-label"><input type="checkbox"> 10. 2 pcs. Picture in 3R, Whole body</label>
+                        <label class="req-item-label"><input type="checkbox"> 11. 2 pcs. Picture in 2x2</label>
+                        <label class="req-item-label"><input type="checkbox"> 12. 2 pcs. Picture in 1x1</label>
+                        <label class="req-item-label" style="grid-column: span 2;"><input type="checkbox"> 13. Kung driver applicant ay photocopy ng Driver's License</label>
+                    </div>
+
+                    <div class="step-metadata-panel">
+                        <div class="date-picker-group">
+                            <div class="date-input-field"><span>D/S:</span><input type="date" class="date-start" onchange="calculateInterval(this)"></div>
+                            <div class="date-input-field"><span>D/E:</span><input type="date" class="date-end" onchange="calculateInterval(this)"></div>
+                            <div class="days-counter-badge">Interval: 0 Days</div>
+                        </div>
+                        <div class="upload-action-box">
+                            <label class="file-upload-label">📁 Choose File<input type="file" class="file-upload-input" onchange="uploadFileToNextcloud(this)"></label>
+                            <span class="upload-status-indicator">No attachment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 10 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-10">
+                    <label th:for="chk-step-10">STEP 10</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description"><strong>Isusumite ng kalihim ng distrito sa Central Office c/o Central Motorpool Department</strong></div>
+                    <span class="step-note">Nota: Maaaring itawag muna sa telephone number na nasa itaas sa Local 4902 - Motorpool HR.</span>
+                    
+                    <div class="step-metadata-panel">
+                        <div class="date-picker-group">
+                            <div class="date-input-field"><span>D/S:</span><input type="date" class="date-start" onchange="calculateInterval(this)"></div>
+                            <div class="date-input-field"><span>D/E:</span><input type="date" class="date-end" onchange="calculateInterval(this)"></div>
+                            <div class="days-counter-badge">Interval: 0 Days</div>
+                        </div>
+                        <div class="upload-action-box">
+                            <label class="file-upload-label">📁 Choose File<input type="file" class="file-upload-input" onchange="uploadFileToNextcloud(this)"></label>
+                            <span class="upload-status-indicator">No attachment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 11 -->
+            <div class="step-row">
+                <div class="step-indicator-cell">
+                    <input type="checkbox" id="chk-step-11">
+                    <label th:for="chk-step-11">STEP 11</label>
+                </div>
+                <div class="step-content-cell">
+                    <div class="step-description">Hintayin ang pagpapatibay at endorsement.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dynamic Legal Footer Content -->
+        <div class="footer-notice">
+            CMD26-383 Nota: Sa pagsusumite ng requirements sa Tanggapan ay ilakip ang checklist na ito at tiyakin na nasunod po ang proseso.<br>
+            <strong>FOR CHURCH AND INTERNAL USE ONLY.</strong><br>
+            Property of the Iglesia Ni Cristo (Church of Christ). All Rights Reserved.
+        </div>
+
+    </div>
+
+    <!-- Interactive Runtime Javascript Script Engine -->
+    <script>
+        // Automatic client-side calendar date-interval range counter engine
+        function calculateInterval(element) {
+            const panel = element.closest('.step-metadata-panel');
+            const startDateVal = panel.querySelector('.date-start').value;
+            const endDateVal = panel.querySelector('.date-end').value;
+            const badge = panel.querySelector('.days-counter-badge');
+
+            if (startDateVal && endDateVal) {
+                const d1 = new Date(startDateVal);
+                const d2 = new Date(endDateVal);
+                const timeDiff = d2.getTime() - d1.getTime();
+                const dayDiff = Math.ceil(timeDiff / (1000 * 306 * 240 / 12)); // Converts ms to days accurately
+                
+                if (dayDiff >= 0) {
+                    badge.innerText = `Interval: ${dayDiff} Day(s)`;
+                    badge.style.backgroundColor = "#e0f2fe";
+                    badge.style.color = "#0369a1";
+                } else {
+                    badge.innerText = "Error: End Date before Start";
+                    badge.style.backgroundColor = "#fee2e2";
+                    badge.style.color = "#ef4444";
+                }
+            }
+        }
+
+        // Asynchronous multi-part file layout transport uploading mechanism connected directly to server WebDAV pipeline
+        function uploadFileToNextcloud(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const rowPanel = input.closest('.step-metadata-panel');
+            const statusLabel = rowPanel.querySelector('.upload-status-indicator');
+            
+            statusLabel.innerText = "⏳ Uploading...";
+            statusLabel.style.color = "var(--cmd-accent)";
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            // POST to backend API endpoint routing asynchronously to the shared public directory
+            fetch('/api/storage/nextcloud/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async response => {
+                if(response.ok) {
+                    statusLabel.innerText = "✅ Uploaded successfully";
+                    statusLabel.style.color = "var(--success-green)";
+                } else {
+                    const errMsg = await response.text();
+                    throw new Error(errMsg || 'Server responded with error');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                statusLabel.innerText = "❌ Upload failed";
+                statusLabel.style.color = "var(--danger-red)";
+                alert("Cloud transmission error: Check your Spring application credentials config settings.");
+            });
+        }
+    </script>
+</body>
+</html>
